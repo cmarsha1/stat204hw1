@@ -1,0 +1,129 @@
+---
+title: "STAT 204 HW 1"
+format: pdf
+---
+## Setup
+```{r} #Loading package
+library(palmerpenguins)
+```
+
+# Exploring the Dataset
+
+```{r}
+#get number of rows and columns
+dim(penguins_raw)
+# 344 rows, 8 columns
+#get variable types
+str(penguins)
+# A mix of variable types: 3 factors, 2 numeric, 3 integer
+```
+
+## Part 1: Vectors and Summary Statistics
+
+```{r}
+# 1.1 Extract and analyze bill lengths
+#Extract bill_length_mm as a vector
+bill_lengths <- penguins$bill_length_mm
+#Calculate summary statistics of bill lengths (mean, median, standard dev, min, max, respectively)
+mean(bill_lengths, na.rm = TRUE)
+median(bill_lengths, na.rm = TRUE)
+sd(bill_lengths, na.rm = TRUE)
+min(bill_lengths, na.rm = TRUE)
+max(bill_lengths, na.rm = TRUE)
+```
+
+```{r}
+# 1.2 Logical subsetting
+# Create logical vector: TRUE when bill length > 45mm
+long_bills <- bill_lengths[bill_lengths >= 45]
+# How many penguins have long bills?
+length(long_bills)
+```
+
+## Part 2: Subsetting Data
+
+```{r}
+# 2.1 Island Analysis
+# Extract bill lengths for Dream Island Penguins only
+dream_bill_lengths <- bill_lengths[penguins$island == "Dream"]
+length(dream_bill_lengths)
+# Calculate the mean for this subset
+mean(dream_bill_lengths, na.rm = TRUE)
+```
+
+```{r}
+# 2.2 Species Counting
+# How many Adelie penguins are in the dataset?
+length(penguins$species[penguins$species == "Adelie"])
+```
+
+```{r}
+# 2.3 Find the heaviest penguin
+# Find body mass of heaviest penguin
+body_mass <- penguins$body_mass_g
+which.max(body_mass)
+print(penguins[170, ])
+# This will generate Row 170, which is the individual with the largest body mass, and provides us with the mass, species and island of the penguin
+```
+
+## Part 3: Matrices and apply()
+
+```{r}
+# 3.1 Create measurement matrix
+# Remove rows with missing values
+penguins_complete <- penguins[complete.cases(penguins), ]
+# Create matrix with: bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g
+bill_lengths <- penguins_complete$bill_length_mm
+bill_depths <- penguins_complete$bill_depth_mm
+flipper_lengths <- penguins_complete$flipper_length_mm
+body_mass <- penguins_complete$body_mass_g
+penguins_measurements <- cbind(penguins_complete$bill_length_mm, penguins_complete$bill_depth_mm, 
+penguins_complete$flipper_length_mm, penguins_complete$body_mass_g)
+penguins_measurements
+```
+
+```{r}
+# 3.2 Apply Functions
+# Use apply() to calculate mean of each column
+class(penguins_measurements)
+dim(penguins_measurements)
+str(penguins_measurements)
+apply(penguins_measurements, 2, mean, na.rm = TRUE)
+apply(penguins_measurements, 2, max, na.rm = TRUE)
+apply(penguins_measurements, 2, which.max)
+```
+
+## Part 4: Custom Function
+
+```{r}
+# 4.1 Write standardize function
+# function that removes NAs, returns (x - mean) / sd
+standardize <- function(x) {(x-mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)}
+#you have to put in x in parentheses so the function knows it is calculating the mean/sd of x, your variable
+bill_length_standardized <- standardize(complete_bill_lengths)
+bill_length_standardized
+
+#verifying that mean = 0 and sd = 1
+mean(bill_length_standardized, na.rm = TRUE)
+sd(bill_length_standardized, na.rm = TRUE)
+```
+
+## Bonus: Option B
+
+```{r}
+# Create bill length to depth ratio
+bill_length_depth_ratio <- penguins$bill_length_mm / penguins$bill_depth_mm
+bill_length_depth_ratio
+length(bill_length_depth_ratio)
+#Find the Bill Length Depth ratio for each species
+bld_ratio_adelie <- bill_length_depth_ratio[penguins$species == "Adelie"]
+mean(bld_ratio_adelie, na.rm = TRUE)
+
+bld_ratio_gentoo <- bill_length_depth_ratio[penguins$species == "Gentoo"]
+mean(bld_ratio_gentoo, na.rm = TRUE)
+
+bld_ratio_chinstrap <- bill_length_depth_ratio[penguins$species == "Chinstrap"]
+mean(bld_ratio_chinstrap, na.rm = TRUE)
+
+# Gentoo has the highest average bill length-to-depth ratio, which is 3.175592
+```

@@ -1,7 +1,11 @@
 ---
 title: "STAT 204 HW 1"
-format: html
+format: pdf
 ---
 
 #this is the hw for stat 1 trying to put in a repository
 #synctest
+
+```{r}
+
+```
