@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 204 HW 1</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="realstat204hw1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="realstat204hw1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="realstat204hw1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="realstat204hw1_files/libs/quarto-html/popper.min.js"></script>
+<script src="realstat204hw1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="realstat204hw1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="realstat204hw1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="realstat204hw1_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="realstat204hw1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="realstat204hw1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="realstat204hw1_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STAT 204 HW 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'palmerpenguins'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw</code></pre>
+</div>
+</div>
+</section>
+<section id="exploring-the-dataset" class="level1">
+<h1>Exploring the Dataset</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get number of rows and columns</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 344  17</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 344 rows, 8 columns</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#get variable types</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+ $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+ $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+ $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+ $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A mix of variable types: 3 factors, 2 numeric, 3 integer</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="part-1-vectors-and-summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-vectors-and-summary-statistics">Part 1: Vectors and Summary Statistics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.1 Extract and analyze bill lengths</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract bill_length_mm as a vector</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bill_lengths <span class="ot">&lt;-</span> penguins<span class="sc">$</span>bill_length_mm</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate summary statistics of bill lengths (mean, median, standard dev, min, max, respectively)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bill_lengths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 43.92193</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(bill_lengths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44.45</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bill_lengths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.459584</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(bill_lengths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32.1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(bill_lengths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 59.6</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.2 Logical subsetting</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create logical vector: TRUE when bill length &gt; 45mm</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>long_bills <span class="ot">&lt;-</span> bill_lengths[bill_lengths <span class="sc">&gt;=</span> <span class="dv">45</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># How many penguins have long bills?</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(long_bills)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 168</code></pre>
+</div>
+</div>
+</section>
+<section id="part-2-subsetting-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-subsetting-data">Part 2: Subsetting Data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Island Analysis</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract bill lengths for Dream Island Penguins only</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dream_bill_lengths <span class="ot">&lt;-</span> bill_lengths[penguins<span class="sc">$</span>island <span class="sc">==</span> <span class="st">"Dream"</span>]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(dream_bill_lengths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 124</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean for this subset</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dream_bill_lengths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44.16774</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.2 Species Counting</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># How many Adelie penguins are in the dataset?</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(penguins<span class="sc">$</span>species[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 152</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.3 Find the heaviest penguin</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Find body mass of heaviest penguin</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>body_mass <span class="ot">&lt;-</span> penguins<span class="sc">$</span>body_mass_g</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(body_mass)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 170</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(penguins[<span class="dv">170</span>, ])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Gentoo  Biscoe           49.2          15.2               221        6300
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will generate Row 170, which is the individual with the largest body mass, and provides us with the mass, species and island of the penguin</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="part-3-matrices-and-apply" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-matrices-and-apply">Part 3: Matrices and apply()</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.1 Create measurement matrix</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with missing values</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>penguins_complete <span class="ot">&lt;-</span> penguins[<span class="fu">complete.cases</span>(penguins), ]</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create matrix with: bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>bill_lengths <span class="ot">&lt;-</span> penguins_complete<span class="sc">$</span>bill_length_mm</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>bill_depths <span class="ot">&lt;-</span> penguins_complete<span class="sc">$</span>bill_depth_mm</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>flipper_lengths <span class="ot">&lt;-</span> penguins_complete<span class="sc">$</span>flipper_length_mm</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>body_mass <span class="ot">&lt;-</span> penguins_complete<span class="sc">$</span>body_mass_g</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>penguins_measurements <span class="ot">&lt;-</span> <span class="fu">cbind</span>(penguins_complete<span class="sc">$</span>bill_length_mm, penguins_complete<span class="sc">$</span>bill_depth_mm, </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>penguins_complete<span class="sc">$</span>flipper_length_mm, penguins_complete<span class="sc">$</span>body_mass_g)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>penguins_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1] [,2] [,3] [,4]
+  [1,] 39.1 18.7  181 3750
+  [2,] 39.5 17.4  186 3800
+  [3,] 40.3 18.0  195 3250
+  [4,] 36.7 19.3  193 3450
+  [5,] 39.3 20.6  190 3650
+  [6,] 38.9 17.8  181 3625
+  [7,] 39.2 19.6  195 4675
+  [8,] 41.1 17.6  182 3200
+  [9,] 38.6 21.2  191 3800
+ [10,] 34.6 21.1  198 4400
+ [11,] 36.6 17.8  185 3700
+ [12,] 38.7 19.0  195 3450
+ [13,] 42.5 20.7  197 4500
+ [14,] 34.4 18.4  184 3325
+ [15,] 46.0 21.5  194 4200
+ [16,] 37.8 18.3  174 3400
+ [17,] 37.7 18.7  180 3600
+ [18,] 35.9 19.2  189 3800
+ [19,] 38.2 18.1  185 3950
+ [20,] 38.8 17.2  180 3800
+ [21,] 35.3 18.9  187 3800
+ [22,] 40.6 18.6  183 3550
+ [23,] 40.5 17.9  187 3200
+ [24,] 37.9 18.6  172 3150
+ [25,] 40.5 18.9  180 3950
+ [26,] 39.5 16.7  178 3250
+ [27,] 37.2 18.1  178 3900
+ [28,] 39.5 17.8  188 3300
+ [29,] 40.9 18.9  184 3900
+ [30,] 36.4 17.0  195 3325
+ [31,] 39.2 21.1  196 4150
+ [32,] 38.8 20.0  190 3950
+ [33,] 42.2 18.5  180 3550
+ [34,] 37.6 19.3  181 3300
+ [35,] 39.8 19.1  184 4650
+ [36,] 36.5 18.0  182 3150
+ [37,] 40.8 18.4  195 3900
+ [38,] 36.0 18.5  186 3100
+ [39,] 44.1 19.7  196 4400
+ [40,] 37.0 16.9  185 3000
+ [41,] 39.6 18.8  190 4600
+ [42,] 41.1 19.0  182 3425
+ [43,] 36.0 17.9  190 3450
+ [44,] 42.3 21.2  191 4150
+ [45,] 39.6 17.7  186 3500
+ [46,] 40.1 18.9  188 4300
+ [47,] 35.0 17.9  190 3450
+ [48,] 42.0 19.5  200 4050
+ [49,] 34.5 18.1  187 2900
+ [50,] 41.4 18.6  191 3700
+ [51,] 39.0 17.5  186 3550
+ [52,] 40.6 18.8  193 3800
+ [53,] 36.5 16.6  181 2850
+ [54,] 37.6 19.1  194 3750
+ [55,] 35.7 16.9  185 3150
+ [56,] 41.3 21.1  195 4400
+ [57,] 37.6 17.0  185 3600
+ [58,] 41.1 18.2  192 4050
+ [59,] 36.4 17.1  184 2850
+ [60,] 41.6 18.0  192 3950
+ [61,] 35.5 16.2  195 3350
+ [62,] 41.1 19.1  188 4100
+ [63,] 35.9 16.6  190 3050
+ [64,] 41.8 19.4  198 4450
+ [65,] 33.5 19.0  190 3600
+ [66,] 39.7 18.4  190 3900
+ [67,] 39.6 17.2  196 3550
+ [68,] 45.8 18.9  197 4150
+ [69,] 35.5 17.5  190 3700
+ [70,] 42.8 18.5  195 4250
+ [71,] 40.9 16.8  191 3700
+ [72,] 37.2 19.4  184 3900
+ [73,] 36.2 16.1  187 3550
+ [74,] 42.1 19.1  195 4000
+ [75,] 34.6 17.2  189 3200
+ [76,] 42.9 17.6  196 4700
+ [77,] 36.7 18.8  187 3800
+ [78,] 35.1 19.4  193 4200
+ [79,] 37.3 17.8  191 3350
+ [80,] 41.3 20.3  194 3550
+ [81,] 36.3 19.5  190 3800
+ [82,] 36.9 18.6  189 3500
+ [83,] 38.3 19.2  189 3950
+ [84,] 38.9 18.8  190 3600
+ [85,] 35.7 18.0  202 3550
+ [86,] 41.1 18.1  205 4300
+ [87,] 34.0 17.1  185 3400
+ [88,] 39.6 18.1  186 4450
+ [89,] 36.2 17.3  187 3300
+ [90,] 40.8 18.9  208 4300
+ [91,] 38.1 18.6  190 3700
+ [92,] 40.3 18.5  196 4350
+ [93,] 33.1 16.1  178 2900
+ [94,] 43.2 18.5  192 4100
+ [95,] 35.0 17.9  192 3725
+ [96,] 41.0 20.0  203 4725
+ [97,] 37.7 16.0  183 3075
+ [98,] 37.8 20.0  190 4250
+ [99,] 37.9 18.6  193 2925
+[100,] 39.7 18.9  184 3550
+[101,] 38.6 17.2  199 3750
+[102,] 38.2 20.0  190 3900
+[103,] 38.1 17.0  181 3175
+[104,] 43.2 19.0  197 4775
+[105,] 38.1 16.5  198 3825
+[106,] 45.6 20.3  191 4600
+[107,] 39.7 17.7  193 3200
+[108,] 42.2 19.5  197 4275
+[109,] 39.6 20.7  191 3900
+[110,] 42.7 18.3  196 4075
+[111,] 38.6 17.0  188 2900
+[112,] 37.3 20.5  199 3775
+[113,] 35.7 17.0  189 3350
+[114,] 41.1 18.6  189 3325
+[115,] 36.2 17.2  187 3150
+[116,] 37.7 19.8  198 3500
+[117,] 40.2 17.0  176 3450
+[118,] 41.4 18.5  202 3875
+[119,] 35.2 15.9  186 3050
+[120,] 40.6 19.0  199 4000
+[121,] 38.8 17.6  191 3275
+[122,] 41.5 18.3  195 4300
+[123,] 39.0 17.1  191 3050
+[124,] 44.1 18.0  210 4000
+[125,] 38.5 17.9  190 3325
+[126,] 43.1 19.2  197 3500
+[127,] 36.8 18.5  193 3500
+[128,] 37.5 18.5  199 4475
+[129,] 38.1 17.6  187 3425
+[130,] 41.1 17.5  190 3900
+[131,] 35.6 17.5  191 3175
+[132,] 40.2 20.1  200 3975
+[133,] 37.0 16.5  185 3400
+[134,] 39.7 17.9  193 4250
+[135,] 40.2 17.1  193 3400
+[136,] 40.6 17.2  187 3475
+[137,] 32.1 15.5  188 3050
+[138,] 40.7 17.0  190 3725
+[139,] 37.3 16.8  192 3000
+[140,] 39.0 18.7  185 3650
+[141,] 39.2 18.6  190 4250
+[142,] 36.6 18.4  184 3475
+[143,] 36.0 17.8  195 3450
+[144,] 37.8 18.1  193 3750
+[145,] 36.0 17.1  187 3700
+[146,] 41.5 18.5  201 4000
+[147,] 46.1 13.2  211 4500
+[148,] 50.0 16.3  230 5700
+[149,] 48.7 14.1  210 4450
+[150,] 50.0 15.2  218 5700
+[151,] 47.6 14.5  215 5400
+[152,] 46.5 13.5  210 4550
+[153,] 45.4 14.6  211 4800
+[154,] 46.7 15.3  219 5200
+[155,] 43.3 13.4  209 4400
+[156,] 46.8 15.4  215 5150
+[157,] 40.9 13.7  214 4650
+[158,] 49.0 16.1  216 5550
+[159,] 45.5 13.7  214 4650
+[160,] 48.4 14.6  213 5850
+[161,] 45.8 14.6  210 4200
+[162,] 49.3 15.7  217 5850
+[163,] 42.0 13.5  210 4150
+[164,] 49.2 15.2  221 6300
+[165,] 46.2 14.5  209 4800
+[166,] 48.7 15.1  222 5350
+[167,] 50.2 14.3  218 5700
+[168,] 45.1 14.5  215 5000
+[169,] 46.5 14.5  213 4400
+[170,] 46.3 15.8  215 5050
+[171,] 42.9 13.1  215 5000
+[172,] 46.1 15.1  215 5100
+[173,] 47.8 15.0  215 5650
+[174,] 48.2 14.3  210 4600
+[175,] 50.0 15.3  220 5550
+[176,] 47.3 15.3  222 5250
+[177,] 42.8 14.2  209 4700
+[178,] 45.1 14.5  207 5050
+[179,] 59.6 17.0  230 6050
+[180,] 49.1 14.8  220 5150
+[181,] 48.4 16.3  220 5400
+[182,] 42.6 13.7  213 4950
+[183,] 44.4 17.3  219 5250
+[184,] 44.0 13.6  208 4350
+[185,] 48.7 15.7  208 5350
+[186,] 42.7 13.7  208 3950
+[187,] 49.6 16.0  225 5700
+[188,] 45.3 13.7  210 4300
+[189,] 49.6 15.0  216 4750
+[190,] 50.5 15.9  222 5550
+[191,] 43.6 13.9  217 4900
+[192,] 45.5 13.9  210 4200
+[193,] 50.5 15.9  225 5400
+[194,] 44.9 13.3  213 5100
+[195,] 45.2 15.8  215 5300
+[196,] 46.6 14.2  210 4850
+[197,] 48.5 14.1  220 5300
+[198,] 45.1 14.4  210 4400
+[199,] 50.1 15.0  225 5000
+[200,] 46.5 14.4  217 4900
+[201,] 45.0 15.4  220 5050
+[202,] 43.8 13.9  208 4300
+[203,] 45.5 15.0  220 5000
+[204,] 43.2 14.5  208 4450
+[205,] 50.4 15.3  224 5550
+[206,] 45.3 13.8  208 4200
+[207,] 46.2 14.9  221 5300
+[208,] 45.7 13.9  214 4400
+[209,] 54.3 15.7  231 5650
+[210,] 45.8 14.2  219 4700
+[211,] 49.8 16.8  230 5700
+[212,] 49.5 16.2  229 5800
+[213,] 43.5 14.2  220 4700
+[214,] 50.7 15.0  223 5550
+[215,] 47.7 15.0  216 4750
+[216,] 46.4 15.6  221 5000
+[217,] 48.2 15.6  221 5100
+[218,] 46.5 14.8  217 5200
+[219,] 46.4 15.0  216 4700
+[220,] 48.6 16.0  230 5800
+[221,] 47.5 14.2  209 4600
+[222,] 51.1 16.3  220 6000
+[223,] 45.2 13.8  215 4750
+[224,] 45.2 16.4  223 5950
+[225,] 49.1 14.5  212 4625
+[226,] 52.5 15.6  221 5450
+[227,] 47.4 14.6  212 4725
+[228,] 50.0 15.9  224 5350
+[229,] 44.9 13.8  212 4750
+[230,] 50.8 17.3  228 5600
+[231,] 43.4 14.4  218 4600
+[232,] 51.3 14.2  218 5300
+[233,] 47.5 14.0  212 4875
+[234,] 52.1 17.0  230 5550
+[235,] 47.5 15.0  218 4950
+[236,] 52.2 17.1  228 5400
+[237,] 45.5 14.5  212 4750
+[238,] 49.5 16.1  224 5650
+[239,] 44.5 14.7  214 4850
+[240,] 50.8 15.7  226 5200
+[241,] 49.4 15.8  216 4925
+[242,] 46.9 14.6  222 4875
+[243,] 48.4 14.4  203 4625
+[244,] 51.1 16.5  225 5250
+[245,] 48.5 15.0  219 4850
+[246,] 55.9 17.0  228 5600
+[247,] 47.2 15.5  215 4975
+[248,] 49.1 15.0  228 5500
+[249,] 46.8 16.1  215 5500
+[250,] 41.7 14.7  210 4700
+[251,] 53.4 15.8  219 5500
+[252,] 43.3 14.0  208 4575
+[253,] 48.1 15.1  209 5500
+[254,] 50.5 15.2  216 5000
+[255,] 49.8 15.9  229 5950
+[256,] 43.5 15.2  213 4650
+[257,] 51.5 16.3  230 5500
+[258,] 46.2 14.1  217 4375
+[259,] 55.1 16.0  230 5850
+[260,] 48.8 16.2  222 6000
+[261,] 47.2 13.7  214 4925
+[262,] 46.8 14.3  215 4850
+[263,] 50.4 15.7  222 5750
+[264,] 45.2 14.8  212 5200
+[265,] 49.9 16.1  213 5400
+[266,] 46.5 17.9  192 3500
+[267,] 50.0 19.5  196 3900
+[268,] 51.3 19.2  193 3650
+[269,] 45.4 18.7  188 3525
+[270,] 52.7 19.8  197 3725
+[271,] 45.2 17.8  198 3950
+[272,] 46.1 18.2  178 3250
+[273,] 51.3 18.2  197 3750
+[274,] 46.0 18.9  195 4150
+[275,] 51.3 19.9  198 3700
+[276,] 46.6 17.8  193 3800
+[277,] 51.7 20.3  194 3775
+[278,] 47.0 17.3  185 3700
+[279,] 52.0 18.1  201 4050
+[280,] 45.9 17.1  190 3575
+[281,] 50.5 19.6  201 4050
+[282,] 50.3 20.0  197 3300
+[283,] 58.0 17.8  181 3700
+[284,] 46.4 18.6  190 3450
+[285,] 49.2 18.2  195 4400
+[286,] 42.4 17.3  181 3600
+[287,] 48.5 17.5  191 3400
+[288,] 43.2 16.6  187 2900
+[289,] 50.6 19.4  193 3800
+[290,] 46.7 17.9  195 3300
+[291,] 52.0 19.0  197 4150
+[292,] 50.5 18.4  200 3400
+[293,] 49.5 19.0  200 3800
+[294,] 46.4 17.8  191 3700
+[295,] 52.8 20.0  205 4550
+[296,] 40.9 16.6  187 3200
+[297,] 54.2 20.8  201 4300
+[298,] 42.5 16.7  187 3350
+[299,] 51.0 18.8  203 4100
+[300,] 49.7 18.6  195 3600
+[301,] 47.5 16.8  199 3900
+[302,] 47.6 18.3  195 3850
+[303,] 52.0 20.7  210 4800
+[304,] 46.9 16.6  192 2700
+[305,] 53.5 19.9  205 4500
+[306,] 49.0 19.5  210 3950
+[307,] 46.2 17.5  187 3650
+[308,] 50.9 19.1  196 3550
+[309,] 45.5 17.0  196 3500
+[310,] 50.9 17.9  196 3675
+[311,] 50.8 18.5  201 4450
+[312,] 50.1 17.9  190 3400
+[313,] 49.0 19.6  212 4300
+[314,] 51.5 18.7  187 3250
+[315,] 49.8 17.3  198 3675
+[316,] 48.1 16.4  199 3325
+[317,] 51.4 19.0  201 3950
+[318,] 45.7 17.3  193 3600
+[319,] 50.7 19.7  203 4050
+[320,] 42.5 17.3  187 3350
+[321,] 52.2 18.8  197 3450
+[322,] 45.2 16.6  191 3250
+[323,] 49.3 19.9  203 4050
+[324,] 50.2 18.8  202 3800
+[325,] 45.6 19.4  194 3525
+[326,] 51.9 19.5  206 3950
+[327,] 46.8 16.5  189 3650
+[328,] 45.7 17.0  195 3650
+[329,] 55.8 19.8  207 4000
+[330,] 43.5 18.1  202 3400
+[331,] 49.6 18.2  193 3775
+[332,] 50.8 19.0  210 4100
+[333,] 50.2 18.7  198 3775</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.2 Apply Functions</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use apply() to calculate mean of each column</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(penguins_measurements)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins_measurements)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 333   4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins_measurements)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> num [1:333, 1:4] 39.1 39.5 40.3 36.7 39.3 38.9 39.2 41.1 38.6 34.6 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(penguins_measurements, <span class="dv">2</span>, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   43.99279   17.16486  200.96697 4207.05706</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(penguins_measurements, <span class="dv">2</span>, max, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   59.6   21.5  231.0 6300.0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(penguins_measurements, <span class="dv">2</span>, which.max)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 179  15 209 164</code></pre>
+</div>
+</div>
+</section>
+<section id="part-4-custom-function" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-custom-function">Part 4: Custom Function</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1 Write standardize function</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># function that removes NAs, returns (x - mean) / sd</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>standardize <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {(x<span class="sc">-</span><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)}</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#you have to put in x in parentheses so the function knows it is calculating the mean/sd of x, your variable</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>bill_length_standardized <span class="ot">&lt;-</span> <span class="fu">standardize</span>(bill_lengths)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>bill_length_standardized</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] -0.894695470 -0.821551521 -0.675263622 -1.333559166 -0.858123495
+  [6] -0.931267445 -0.876409483 -0.528975723 -0.986125407 -1.717564900
+ [11] -1.351845153 -0.967839419 -0.272971901 -1.754136874  0.367037656
+ [16] -1.132413305 -1.150699292 -1.479847064 -1.059269356 -0.949553432
+ [21] -1.589562988 -0.620405660 -0.638691647 -1.114127318 -0.638691647
+ [26] -0.821551521 -1.242129229 -0.821551521 -0.565547698 -1.388417128
+ [31] -0.876409483 -0.949553432 -0.327829863 -1.168985280 -0.766693559
+ [36] -1.370131140 -0.583833685 -1.461561077  0.019603896 -1.278701204
+ [41] -0.803265533 -0.528975723 -1.461561077 -0.309543876 -0.803265533
+ [46] -0.711835597 -1.644420950 -0.364401838 -1.735850887 -0.474117761
+ [51] -0.912981457 -0.620405660 -1.370131140 -1.168985280 -1.516419039
+ [56] -0.492403749 -1.168985280 -0.528975723 -1.388417128 -0.437545787
+ [61] -1.552991014 -0.528975723 -1.479847064 -0.400973812 -1.918710760
+ [66] -0.784979546 -0.803265533  0.330465681 -1.552991014 -0.218113939
+ [71] -0.565547698 -1.242129229 -1.424989102 -0.346115850 -1.717564900
+ [76] -0.199827952 -1.333559166 -1.626134963 -1.223843242 -0.492403749
+ [81] -1.406703115 -1.296987191 -1.040983369 -0.931267445 -1.516419039
+ [86] -0.528975723 -1.827280824 -0.803265533 -1.424989102 -0.583833685
+ [91] -1.077555343 -0.675263622 -1.991854709 -0.144969990 -1.644420950
+ [96] -0.547261711 -1.150699292 -1.132413305 -1.114127318 -0.784979546
+[101] -0.986125407 -1.059269356 -1.077555343 -0.144969990 -1.077555343
+[106]  0.293893706 -0.784979546 -0.327829863 -0.803265533 -0.236399926
+[111] -0.986125407 -1.223843242 -1.516419039 -0.528975723 -1.424989102
+[116] -1.150699292 -0.693549609 -0.474117761 -1.607848976 -0.620405660
+[121] -0.949553432 -0.455831774 -0.912981457  0.019603896 -1.004411394
+[126] -0.163255977 -1.315273178 -1.187271267 -1.077555343 -0.528975723
+[131] -1.534705026 -0.693549609 -1.278701204 -0.784979546 -0.693549609
+[136] -0.620405660 -2.174714583 -0.602119673 -1.223843242 -0.912981457
+[141] -0.876409483 -1.351845153 -1.461561077 -1.132413305 -1.461561077
+[146] -0.455831774  0.385323643  1.098477149  0.860759313  1.098477149
+[151]  0.659613453  0.458467592  0.257321732  0.495039567 -0.126684002
+[156]  0.513325554 -0.565547698  0.915617275  0.275607719  0.805901351
+[161]  0.330465681  0.970475237 -0.364401838  0.952189250  0.403609630
+[166]  0.860759313  1.135049123  0.202463770  0.458467592  0.421895617
+[171] -0.199827952  0.385323643  0.696185427  0.769329377  1.098477149
+[176]  0.604755491 -0.218113939  0.202463770  2.853931932  0.933903263
+[181]  0.805901351 -0.254685914  0.074461858  0.001317909  0.860759313
+[186] -0.236399926  1.025333199  0.239035744  1.025333199  1.189907085
+[191] -0.071826040  0.275607719  1.189907085  0.165891795  0.220749757
+[196]  0.476753579  0.824187339  0.202463770  1.116763136  0.458467592
+[201]  0.184177782 -0.035254066  0.275607719 -0.144969990  1.171621098
+[206]  0.239035744  0.403609630  0.312179694  1.884774604  0.330465681
+[211]  1.061905174  1.007047212 -0.090112028  1.226479060  0.677899440
+[216]  0.440181605  0.769329377  0.458467592  0.440181605  0.842473326
+[221]  0.641327465  1.299623009  0.220749757  0.220749757  0.933903263
+[226]  1.555626832  0.623041478  1.098477149  0.165891795  1.244765047
+[231] -0.108398015  1.336194984  0.641327465  1.482482882  0.641327465
+[236]  1.500768870  0.275607719  1.007047212  0.092747846  1.244765047
+[241]  0.988761225  0.531611541  0.805901351  1.299623009  0.824187339
+[246]  2.177350401  0.586469503  0.933903263  0.513325554 -0.419259799
+[251]  1.720200718 -0.126684002  0.751043389  1.189907085  1.061905174
+[256] -0.090112028  1.372766958  0.403609630  2.031062502  0.879045301
+[261]  0.586469503  0.513325554  1.171621098  0.220749757  1.080191161
+[266]  0.458467592  1.098477149  1.336194984  0.257321732  1.592198806
+[271]  0.220749757  0.385323643  1.336194984  0.367037656  1.336194984
+[276]  0.476753579  1.409338933  0.549897529  1.464196895  0.348751668
+[281]  1.189907085  1.153335110  2.561356135  0.440181605  0.952189250
+[286] -0.291257888  0.824187339 -0.144969990  1.208193072  0.495039567
+[291]  1.464196895  1.189907085  1.007047212  0.440181605  1.610484794
+[296] -0.565547698  1.866488616 -0.272971901  1.281337022  1.043619187
+[301]  0.641327465  0.659613453  1.464196895  0.531611541  1.738486705
+[306]  0.915617275  0.403609630  1.263051034  0.275607719  1.263051034
+[311]  1.244765047  1.116763136  0.915617275  1.372766958  1.061905174
+[316]  0.751043389  1.354480971  0.312179694  1.226479060 -0.272971901
+[321]  1.500768870  0.220749757  0.970475237  1.135049123  0.293893706
+[326]  1.445910908  0.513325554  0.312179694  2.159064413 -0.090112028
+[331]  1.025333199  1.244765047  1.135049123</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#verifying that mean = 0 and sd = 1</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bill_length_standardized, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.081551e-15</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bill_length_standardized, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+</section>
+<section id="bonus-option-b" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-option-b">Bonus: Option B</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bill length to depth ratio</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>bill_length_depth_ratio <span class="ot">&lt;-</span> penguins<span class="sc">$</span>bill_length_mm <span class="sc">/</span> penguins<span class="sc">$</span>bill_depth_mm</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>bill_length_depth_ratio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 2.090909 2.270115 2.238889       NA 1.901554 1.907767 2.185393 2.000000
+  [9] 1.883978 2.079208 2.210526 2.184971 2.335227 1.820755 1.639810 2.056180
+ [17] 2.036842 2.053140 1.869565 2.139535 2.065574 2.016043 1.869792 2.110497
+ [25] 2.255814 1.867725 2.182796 2.262570 2.037634 2.142857 2.365269 2.055249
+ [33] 2.219101 2.164021 2.141176 1.857820 1.940000 2.281081 1.948187 2.083770
+ [41] 2.027778 2.217391 1.945946 2.238579 2.189349 2.106383 2.163158 1.984127
+ [49] 2.011173 1.995283 2.237288 2.121693 1.955307 2.153846 1.906077 2.225806
+ [57] 2.228571 2.159574 2.198795 1.968586 2.112426 1.957346 2.211765 2.258242
+ [65] 2.128655 2.311111 2.191358 2.151832 2.162651 2.154639 1.763158 2.157609
+ [73] 2.302326 2.423280 2.028571 2.313514 2.434524 1.917526 2.248447 2.204188
+ [81] 2.011628 2.437500 1.952128 1.809278 2.095506 2.034483 1.861538 1.983871
+ [89] 1.994792 2.069149 1.983333 2.270718 1.988304 2.187845 2.092486 2.158730
+ [97] 2.048387 2.178378 2.055901 2.335135 1.955307 2.050000 2.356250 1.890000
+[105] 2.037634 2.100529 2.244186 1.910000 2.241176 2.273684 2.309091 2.246305
+[113] 2.242938 2.164103 1.913043 2.333333 2.270588 1.819512 2.100000 2.209677
+[121] 2.104651 1.904040 2.364706 2.237838 2.213836 2.136842 2.204545 2.267760
+[129] 2.280702 2.450000 2.150838 2.244792 1.989189 2.027027 2.164773 2.348571
+[137] 2.034286 2.000000 2.242424 2.217877 2.350877 2.360465 2.070968 2.394118
+[145] 2.220238 2.085561 2.107527 1.989130 2.022472 2.088398 2.105263 2.243243
+[153] 3.492424 3.067485 3.453901 3.289474 3.282759 3.444444 3.109589 3.052288
+[161] 3.231343 3.038961 2.985401 3.043478 3.321168 3.315068 3.136986 3.140127
+[169] 3.111111 3.236842 3.186207 3.225166 3.510490 3.110345 3.206897 2.930380
+[177] 3.274809 3.052980 3.111888 3.186667 3.370629 3.267974 3.091503 3.014085
+[185] 3.110345 3.505882 3.317568 2.969325 3.109489 2.566474 3.235294 3.101911
+[193] 3.116788 3.100000 3.306569 3.306667 3.176101 3.136691 3.273381 3.176101
+[201] 3.375940 2.860759 3.281690 3.439716 3.131944 3.340000 3.229167 2.922078
+[209] 3.151079 3.033333 2.979310 3.294118 3.282609 3.100671 3.287770 3.458599
+[217] 3.225352 2.964286 3.208333 3.055556 3.063380 3.380000 3.180000 2.974359
+[225] 3.089744 3.141892 3.093333 3.037500 3.345070 3.134969 3.275362 2.756098
+[233] 3.386207 3.365385 3.246575 3.144654 3.253623 2.936416 3.013889 3.612676
+[241] 3.392857 3.064706 3.166667 3.052632 3.137931 3.074534 3.027211 3.235669
+[249] 3.126582 3.212329 3.361111 3.096970 3.233333 3.288235 3.045161 3.273333
+[257] 3.427536 2.906832 2.836735 3.379747 3.092857 3.185430 3.322368 3.132075
+[265] 2.861842 3.159509 3.276596 3.443750 2.834395 3.012346 3.445255       NA
+[273] 3.272727 3.210191 3.054054 3.099379 2.597765 2.564103 2.671875 2.427807
+[281] 2.661616 2.539326 2.532967 2.818681 2.433862 2.577889 2.617978 2.546798
+[289] 2.716763 2.872928 2.684211 2.576531 2.515000 3.258427 2.494624 2.703297
+[297] 2.450867 2.771429 2.602410 2.608247 2.608939 2.736842 2.744565 2.605263
+[305] 2.606742 2.640000 2.463855 2.605769 2.544910 2.712766 2.672043 2.827381
+[313] 2.601093 2.512077 2.825301 2.688442 2.512821 2.640000 2.664921 2.676471
+[321] 2.843575 2.745946 2.798883 2.500000 2.754011 2.878613 2.932927 2.705263
+[329] 2.641618 2.573604 2.456647 2.776596 2.722892 2.477387 2.670213 2.350515
+[337] 2.661538 2.836364 2.688235 2.818182 2.403315 2.725275 2.673684 2.684492</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(bill_length_depth_ratio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 344</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Find the Bill Length Depth ratio for each species</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>bld_ratio_adelie <span class="ot">&lt;-</span> bill_length_depth_ratio[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span>]</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bld_ratio_adelie, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.119726</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>bld_ratio_gentoo <span class="ot">&lt;-</span> bill_length_depth_ratio[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>]</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bld_ratio_gentoo, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.175592</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>bld_ratio_chinstrap <span class="ot">&lt;-</span> bill_length_depth_ratio[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Chinstrap"</span>]</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bld_ratio_chinstrap, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.653756</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gentoo has the highest average bill length-to-depth ratio, which is 3.175592</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

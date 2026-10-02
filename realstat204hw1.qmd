@@ -1,9 +1,10 @@
 ---
 title: "STAT 204 HW 1"
-format: pdf
 ---
+
 ## Setup
-```{r} #Loading package
+```{r} 
+#Loading package
 library(palmerpenguins)
 ```
 
@@ -100,7 +101,7 @@ apply(penguins_measurements, 2, which.max)
 # function that removes NAs, returns (x - mean) / sd
 standardize <- function(x) {(x-mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)}
 #you have to put in x in parentheses so the function knows it is calculating the mean/sd of x, your variable
-bill_length_standardized <- standardize(complete_bill_lengths)
+bill_length_standardized <- standardize(bill_lengths)
 bill_length_standardized
 
 #verifying that mean = 0 and sd = 1
